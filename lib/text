@@ -1,0 +1,191 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const QuranApp());
+}
+
+class QuranApp extends StatelessWidget {
+  const QuranApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color(0xFFF2E7DC),
+        scaffoldBackgroundColor: const Color(0xFFF2E7DC),
+      ),
+      home: const QuranPage(),
+    );
+  }
+}
+
+class QuranPage extends StatelessWidget {
+  const QuranPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFF2E7DC),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {},
+          ),
+          title: const Text(
+            'Al-Faatiha',
+            style: TextStyle(color: Colors.black),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings, color: Colors.black),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                color: const Color(0xFFF2E7DC),
+                margin: const EdgeInsets.all(16),
+                child: ExpansionTile(
+                  backgroundColor: const Color(0xFFF2E7DC),
+                  collapsedBackgroundColor: const Color(0xFFF2E7DC),
+                  leading: const Icon(
+                    Icons.hexagon_outlined,
+                    color: Colors.black,
+                  ),
+                  title: const Text(
+                    'Al-Faatiha 1:1',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: const [
+                          Text(
+                            'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontFamily: 'Arabic',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'In the name of Allah, the Entirely Merciful, the Especially Merciful.',
+                            style: TextStyle(color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverAppBar(
+              expandedHeight: 60,
+              backgroundColor: const Color(0xFFF2E7DC),
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TabBar(
+                      isScrollable: true,
+                      indicatorColor: Colors.black,
+                      labelColor: Colors.black,
+                      tabs: [
+                        const Tab(text: 'En: Ibn Kathir'),
+                        const Tab(text: 'Bn: Tafsir Fathul ...'),
+                        Tab(icon: Icon(Icons.add, color: Colors.black)),
+                        const Tab(text: 'Ad'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverFillRemaining(
+              child: TabBarView(
+                children: [
+                  _buildTabContent(),
+                  _buildTabContent(),
+                  _buildTabContent(),
+                  _buildTabContent(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTabContent() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            'Bismillah is the First Ayah of Al-Fatihah',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+            style: TextStyle(
+              fontSize: 24,
+              fontFamily: 'Arabic',
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 8),
+          Text(
+            '(١)',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 16),
+          Text(
+            'In the Name of Allah, the Most Gracious, the Most Merciful.\n\n'
+            'The Companions started the Book of Allah with Bismillah:\n\n'
+            'The scholars also agree that Bismillah is a part of an Ayah in Surah An-Naml (Surah 27).\n\n'
+            'They disagree over whether it is a separate Ayah before every Surah, or if it is an Ayah, or a part of an Ayah, included in every Surah where the Bismillah appears in its beginning.\n\n'
+            'Ad-Daraqutni also recorded a Hadith from Abu Hurayrah from the Prophet that supports this Hadith by Ibn Khuzaymah.\n\n'
+            'Also, similar statements were attributed to Ali, Ibn Abbas and others.',
+            style: TextStyle(
+              color: Colors.black,
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+=========================
+Now jeta korte hobe -
+- TabBar er niche 8px gap dite hobe.
+- TabBar er current position and style change kora jabe na.
+- So, ami chacchi page scroll korar time jokhn TabBar ,Appbar er niche asbe, tokokhon TabBar o stciky hoye jabe and nicher list item gula scroll hobe.
+
+**Strictly, ei kaj gula chara onno kono kaj korba na, others kono style change korba na.**
+
+Give complete code with main function.
