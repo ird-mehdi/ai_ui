@@ -5,10 +5,12 @@ import 'package:ui_design_ai/core/bindings/initial_binding.dart';
 import 'package:ui_design_ai/core/constants/colors.dart';
 import 'package:ui_design_ai/core/theme/app_theme.dart';
 import 'package:ui_design_ai/core/theme/quran_majeed_screen.dart';
-import 'package:ui_design_ai/presentation/home/screens/home_screen.dart';
 import 'package:ui_design_ai/presentation/tafsir/ui/screens/tafsir_screen.dart';
+import 'core/di/injection_container.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   InitialBinding().dependencies();
   runApp(const QuranMajeedApp());
 }
