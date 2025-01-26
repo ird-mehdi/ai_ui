@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ui_design_ai/core/di/injection_container.dart';
+import 'package:ui_design_ai/presentation/tafsir/presenter/tafsir_presenter.dart';
+
 import '../widgets/sticky_tab_bar_delegate.dart';
 import '../widgets/tafsir_tab_content.dart';
 import '../widgets/tafsir_header.dart';
@@ -9,6 +13,8 @@ class TafsirScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(getIt<TafsirController>());
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -40,13 +46,31 @@ class TafsirScreen extends StatelessWidget {
               ),
             ];
           },
-          body: const TabBarView(
-            children: [
-              TafsirTabContent(),
-              TafsirTabContent(),
-              TafsirTabContent(),
-              TafsirTabContent(),
-            ],
+          body: Obx(
+            () => TabBarView(
+              children: [
+                TafsirTabContent(
+                  isLoading: controller.isLoading,
+                  tafsir: controller.tafsir,
+                  error: controller.error,
+                ),
+                TafsirTabContent(
+                  isLoading: controller.isLoading,
+                  tafsir: controller.tafsir,
+                  error: controller.error,
+                ),
+                TafsirTabContent(
+                  isLoading: controller.isLoading,
+                  tafsir: controller.tafsir,
+                  error: controller.error,
+                ),
+                TafsirTabContent(
+                  isLoading: controller.isLoading,
+                  tafsir: controller.tafsir,
+                  error: controller.error,
+                ),
+              ],
+            ),
           ),
         ),
       ),

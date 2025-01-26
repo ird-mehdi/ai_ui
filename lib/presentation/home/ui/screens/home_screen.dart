@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_design_ai/presentation/common/widgets/custom_app_bar.dart';
-import 'package:ui_design_ai/presentation/home/widgets/header_section.dart';
+import 'package:ui_design_ai/presentation/home/ui/widgets/header_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

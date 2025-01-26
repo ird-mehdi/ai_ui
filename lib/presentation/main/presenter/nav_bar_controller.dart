@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_design_ai/presentation/home/screens/home_screen.dart';
+import 'package:ui_design_ai/presentation/home/ui/screens/home_screen.dart';
 
 class NavBarController extends GetxController {
   // Observable selected index

@@ -6,10 +6,34 @@ import 'package:ui_design_ai/core/constants/app_images.dart';
 import 'package:ui_design_ai/core/constants/colors.dart';
 
 class NavBarPage extends StatelessWidget {
-  // Inject controller
-  final NavBarController controller = Get.put(NavBarController());
+  // Cache the controller as static final
+  static final NavBarController controller = Get.put(NavBarController());
 
-  NavBarPage({super.key});
+  // Use const constructor
+  const NavBarPage({super.key});
+
+  // Cache navigation destinations as static const
+  static const _borderRadius = BorderRadius.only(
+    topLeft: Radius.circular(16),
+    topRight: Radius.circular(16),
+  );
+
+  // Cache navigation destinations
+  static final List<NavigationDestination> _destinations = [
+    _buildNavDestination(AppImages.icHome),
+    _buildNavDestination(AppImages.icMenuBook),
+    _buildNavDestination(AppImages.icHifz),
+    _buildNavDestination(AppImages.icCollection),
+    _buildNavDestination(AppImages.icSetting),
+  ];
+
+  static NavigationDestination _buildNavDestination(String assetPath) {
+    return NavigationDestination(
+      icon: SvgPicture.asset(assetPath),
+      selectedIcon: SvgPicture.asset(assetPath),
+      label: '',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +44,8 @@ class NavBarPage extends StatelessWidget {
           )),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
-          ),
-          border: Border(
+          borderRadius: _borderRadius,
+          border: const Border(
             top: BorderSide(
               color: AppColors.almond,
               width: 1,
@@ -36,33 +57,7 @@ class NavBarPage extends StatelessWidget {
               onDestinationSelected: controller.onItemTapped,
               backgroundColor: AppColors.alabaster,
               height: 80,
-              destinations: [
-                NavigationDestination(
-                  icon: SvgPicture.asset(AppImages.icHome),
-                  selectedIcon: SvgPicture.asset(AppImages.icHome),
-                  label: '',
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(AppImages.icMenuBook),
-                  selectedIcon: SvgPicture.asset(AppImages.icMenuBook),
-                  label: '',
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(AppImages.icHifz),
-                  selectedIcon: SvgPicture.asset(AppImages.icHifz),
-                  label: '',
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(AppImages.icCollection),
-                  selectedIcon: SvgPicture.asset(AppImages.icCollection),
-                  label: '',
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(AppImages.icSetting),
-                  selectedIcon: SvgPicture.asset(AppImages.icSetting),
-                  label: '',
-                ),
-              ],
+              destinations: _destinations,
             )),
       ),
     );

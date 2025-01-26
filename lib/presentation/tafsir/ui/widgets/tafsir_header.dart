@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_design_ai/presentation/main/screens/main_screen.dart';
 
 class TafsirHeader extends StatelessWidget {
   const TafsirHeader({super.key});
@@ -9,7 +10,12 @@ class TafsirHeader extends StatelessWidget {
       backgroundColor: const Color(0xFFFBEDD3),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NavBarPage()),
+          );
+        },
       ),
       title: const Text(
         'Al-Faatiha',
@@ -18,7 +24,12 @@ class TafsirHeader extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.settings, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NavBarPage()),
+            );
+          },
         ),
       ],
       floating: false,

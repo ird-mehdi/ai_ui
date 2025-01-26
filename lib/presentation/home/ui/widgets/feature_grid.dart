@@ -51,7 +51,7 @@ class FeatureItem extends StatelessWidget {
             borderRadius: radius12,
           ),
           child: Padding(
-            padding: padding12,
+            padding: padding10,
             child: Icon(icon, size: twentyFourPx, color: AppColors.almondDark),
           ),
         ),

@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:ui_design_ai/domain/entities/tafsir.dart';
 
 class TafsirTabContent extends StatelessWidget {
-  const TafsirTabContent({super.key});
+  final bool isLoading;
+  final Tafsir? tafsir;
+  final String? error;
+
+  const TafsirTabContent({
+    super.key,
+    required this.isLoading,
+    required this.tafsir,
+    required this.error,
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (error != null) {
+      return Center(child: Text('Error: $error'));
+    }
+
+    if (tafsir == null) {
+      return const Center(child: Text('No data available'));
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Bismillah is the First Ayah of Al-Fatihah',
             style: TextStyle(
@@ -20,7 +42,7 @@ class TafsirTabContent extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+            tafsir!.arabicText,
             style: TextStyle(
               fontSize: 24,
               fontFamily: 'Arabic',
@@ -38,12 +60,7 @@ class TafsirTabContent extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'In the Name of Allah, the Most Gracious, the Most Merciful.\n\n'
-            'The Companions started the Book of Allah with Bismillah:\n\n'
-            'The scholars also agree that Bismillah is a part of an Ayah in Surah An-Naml (Surah 27).\n\n'
-            'They disagree over whether it is a separate Ayah before every Surah, or if it is an Ayah, or a part of an Ayah, included in every Surah where the Bismillah appears in its beginning.\n\n'
-            'Ad-Daraqutni also recorded a Hadith from Abu Hurayrah from the Prophet that supports this Hadith by Ibn Khuzaymah.\n\n'
-            'Also, similar statements were attributed to Ali, Ibn Abbas and others.',
+            tafsir!.explanation,
             style: TextStyle(
               color: Colors.black,
               height: 1.5,
